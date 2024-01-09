@@ -81,8 +81,6 @@ jobs:
       )
     
     runs-on: ubuntu-latest
-    environment:
-      name: production
 
     steps:
       - name: Setup .NET
@@ -97,5 +95,5 @@ jobs:
         with:
           name: nugetArtifacts
 
-      - name: Publish to MyGet Packages
+      - name: Publish to Feedz.io Packages
         run: dotnet nuget push **/*.nupkg --source ${{ vars.NUGET_SOURCE_INTERNAL }} -ss ${{ vars.NUGET_SOURCE_SYMBOLS_INTERNAL }} --api-key ${{ secrets.NUGET_TOKEN_INTERNAL }} --skip-duplicate
