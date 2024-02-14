@@ -96,4 +96,4 @@ jobs:
           name: nugetArtifacts
 
       - name: Publish to Feedz.io Packages
-        run: dotnet nuget push **/*.nupkg --source ${{ vars.NUGET_SOURCE_INTERNAL }} -ss ${{ vars.NUGET_SOURCE_SYMBOLS_INTERNAL }} --api-key ${{ secrets.NUGET_TOKEN_INTERNAL }} --skip-duplicate
+        run: dotnet nuget push **/*.nupkg --source ${{ vars.NUGET_SOURCE_PUBLIC }} -ss ${{ vars.NUGET_SOURCE_SYMBOLS_PUBLIC }} --api-key ${{ secrets.NUGET_TOKEN_INTERNAL }} --skip-duplicate
