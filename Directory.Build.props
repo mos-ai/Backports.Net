@@ -9,6 +9,17 @@
     <PackageTags>Backports .netstandard2.0</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageId>Backports.$(MSBuildProjectName.Replace(" ", "_"))</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CommonPath>$(MSBuildThisFileDirectory)src/Common/src/</CommonPath>
+    <CompatibilityPath>$(MSBuildThisFileDirectory)src/Compatibility/src/</CompatibilityPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.3.0">
       <PrivateAssets>all</PrivateAssets>
@@ -16,4 +27,38 @@
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(GeneratePackageOnBuild)' == 'true'">
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!-- Hack for Azure DevOps Artifacts so pdb files can be included.
+         Remove when proper symbols support is implemented. -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(UsePolyfill)' == 'true'">
+		<PackageReference Include="Polyfill" Version="2.3.0" />
+		<PackageReference Include="System.ValueTuple"
+                  Version="4.5.0"
+                  Condition="$(TargetFramework.StartsWith('net46'))" />
+		<PackageReference Include="System.Memory"
+                  Version="4.5.5"
+                  Condition="$(TargetFrameworkIdentifier) == '.NETStandard' or
+                             $(TargetFrameworkIdentifier) == '.NETFramework' or
+                             $(TargetFramework.StartsWith('netcoreapp2'))" />
+		<PackageReference Include="System.Threading.Tasks.Extensions"
+                  Version="4.5.4"
+                  Condition="$(TargetFramework) == 'netstandard2.0' or
+                             $(TargetFramework) == 'netcoreapp2.0' or
+                             $(TargetFrameworkIdentifier) == '.NETFramework'" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
+	</ItemGroup>
 </Project>
