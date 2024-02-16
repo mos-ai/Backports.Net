@@ -6,7 +6,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 
-namespace System.IO.Pipes
+namespace Backports.System.IO.Pipes
 {
     public class PipeSecurity
     {

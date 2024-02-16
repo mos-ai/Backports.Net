@@ -3,11 +3,13 @@
 
 using Microsoft.Win32.SafeHandles;
 
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace System.IO.Pipes
+namespace Backports.System.IO.Pipes
 {
     public abstract partial class PipeStream : Stream
     {

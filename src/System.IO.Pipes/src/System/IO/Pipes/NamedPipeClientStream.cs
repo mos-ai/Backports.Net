@@ -7,8 +7,10 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
+using System;
 
-namespace System.IO.Pipes
+namespace Backports.System.IO.Pipes
 {
     /// <summary>
     /// Named pipe client. Use this to open the client end of a named pipes created with
