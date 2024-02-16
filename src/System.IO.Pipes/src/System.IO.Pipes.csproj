@@ -4,7 +4,6 @@
     <!--<OmitTransitiveCompileReferences>true</OmitTransitiveCompileReferences>-->
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Nullable>enable</Nullable>
-	<RootNamespace>Backports.System.IO.Pipes</RootNamespace>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <UsePolyfill>true</UsePolyfill>
   </PropertyGroup>
