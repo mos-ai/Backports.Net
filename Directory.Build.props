@@ -13,6 +13,8 @@
     <LangVersion>latest</LangVersion>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <PackageId>Backports.$(MSBuildProjectName.Replace(" ", "_"))</PackageId>
+    <RootNamespace>$(PackageId)</RootNamespace>
+    <AssemblyName>$(PackageId)</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
