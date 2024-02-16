@@ -1,5 +1,5 @@
 ﻿namespace System;
 
-internal class SR : System.IO.Pipes.Resources.Strings
+internal class SR : Backports.System.IO.Pipes.Resources.Strings
 {
 }
